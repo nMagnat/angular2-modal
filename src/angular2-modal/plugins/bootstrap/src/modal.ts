@@ -55,10 +55,6 @@ export class Modal extends Modal_ {
 
     dialogRef.inElement ? overlay.insideElement() : overlay.fullscreen();
 
-    // add body class if this is the only dialog in the stack
-    if (isDoc && !document.body.classList.contains('modal-open')) {
-      document.body.classList.add('modal-open');
-    }
 
 
     if (dialogRef.inElement) {
@@ -80,7 +76,7 @@ export class Modal extends Modal_ {
 
       combineLatest.call(backdrop.myAnimationEnd$(), container.myAnimationEnd$(), (s1, s2) => [s1,s2])
         .subscribe( sources => {
-          isDoc && this.overlay.groupStackLength(dialogRef) === 1 && document.body.classList.remove('modal-open');
+          isDoc && this.overlay.groupStackLength(dialogRef) === 1 /* && document.body.classList.remove('modal-open')*/;
           completer.resolve();
         });
 
